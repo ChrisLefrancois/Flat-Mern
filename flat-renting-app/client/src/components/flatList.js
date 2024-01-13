@@ -4,13 +4,29 @@ const FlatList = () => {
     const [flats, setFlats] = useState([]);
 
     useEffect(() => {
-        // Fetch flats data from the server and update the state
-    }, []);
+        const fetchFlats = async () => {
+            try {
+                const response = await fetch('http://localhost:3001/flats');
+                const data = await response.json();
+                setFlats(data);
+            } catch (error) {
+                console.error('Error fetching flats:', error);
+            }
+        };
+
+        fetchFlats();
+    }, []); // The empty dependency array ensures the effect runs only once on component mount
 
     return (
         <div>
             <h2>Flat List</h2>
-            {/* Display flat information */}
+            <ul>
+                {flats.map(flat => (
+                    <li key={flat._id}>
+                        <strong>{flat.flat_name}</strong> - {flat.address}
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };
