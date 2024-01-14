@@ -14,6 +14,8 @@ app.use(express.json());
 const flatRoutes = require('./routes/flatRoutes.js');
 app.use('/flats', flatRoutes);
 
+const appartmentRoutes = require("./routes/apartmentRoutes.js")
+app.use('/apartment', appartmentRoutes)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);

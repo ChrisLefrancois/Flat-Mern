@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 
 const FlatList = () => {
     const [flats, setFlats] = useState([]);
@@ -18,17 +20,17 @@ const FlatList = () => {
     }, []); // The empty dependency array ensures the effect runs only once on component mount
 
     return (
-        <div>
-            <h2>Flat List</h2>
-            <ul>
-                {flats.map(flat => (
-                    <li key={flat._id}>
-                        <strong>{flat.flat_name}</strong> - {flat.address}
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+      <div>
+          <h2>Flat List</h2>
+          <ul>
+              {flats.map(flat => (
+                  <li key={flat._id}>
+                      <Link to={`/flats/${flat._id}`}>{flat.flat_name}</Link>
+                  </li>
+              ))}
+          </ul>
+      </div>
+  );
 };
 
 export default FlatList;

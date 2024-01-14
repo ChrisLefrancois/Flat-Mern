@@ -1,13 +1,17 @@
 import React from 'react';
-import FlatList from './components/flatList';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import FlatList from './components/flatList.js';
+import FlatDetail from './components/flatDetail.js';
 
-function App() {
+const App = () => {
     return (
-        <div>
-            <h1>Flat Renting App</h1>
-            <FlatList />
-        </div>
+        <Router>
+          <Routes>
+            <Route path="/flats" exact element={<FlatList />} />
+            <Route path="/flats/:flatId" element={<FlatDetail />} />
+          </Routes>
+        </Router>
     );
-}
+};
 
 export default App;
