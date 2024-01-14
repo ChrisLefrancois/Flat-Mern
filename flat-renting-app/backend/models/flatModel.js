@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const flatSchema = new mongoose.Schema({
     flat_name: { type: String, required: true },
+    images: {type: String, required: true},
     address: { type: String, required: true }
 });
 
