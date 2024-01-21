@@ -31,13 +31,13 @@ const flatRoutes = require('./routes/flatRoutes.js');
 app.use('/flats', flatRoutes);
 
 const apartmentRoutes = require("./routes/apartmentRoutes.js")
-app.use('/apartment', apartmentRoutes);
+app.use('/apartments', apartmentRoutes);
 
 const videoRoutes = require("./routes/videoRoutes.js")
-app.use('/video', videoRoutes);
+app.use('/videos', videoRoutes);
 
 const videoApartmentRoutes = require("./routes/videoApartmentRoutes.js")
-app.use("/videoapartment", videoApartmentRoutes)
+app.use("/videoapartments", videoApartmentRoutes)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);

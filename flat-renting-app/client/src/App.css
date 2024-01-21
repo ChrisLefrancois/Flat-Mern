@@ -2,6 +2,17 @@
   text-align: center;
 }
 
+.hotel {
+  width: 70%;
+  height: 250px;
+  /* background-color: red; */
+  margin: 8px auto;
+  display: flex;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

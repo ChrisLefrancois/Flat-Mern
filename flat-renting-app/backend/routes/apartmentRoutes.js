@@ -51,6 +51,17 @@ router.get('/flats/:flatId', async (req, res) => {
     }
 });
 
+// Route to get one apartment
+router.get('/:apartmentId', async (req,res) => {
+  try {
+    const apartmentId = req.params.apartmentId;
+    const apartment = await Apartment.find({_id: apartmentId});
+    res.json(apartment);
+  } catch (err){
+    res.status(500).json({ message: err.message})
+  }
+})
+
 router.delete('/', async (req, res) => {
   try {
     await Apartment.deleteMany();
