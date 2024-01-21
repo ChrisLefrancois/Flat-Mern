@@ -30,8 +30,14 @@ app.get('/images/:public_id', (req, res) => {
 const flatRoutes = require('./routes/flatRoutes.js');
 app.use('/flats', flatRoutes);
 
-const appartmentRoutes = require("./routes/apartmentRoutes.js")
-app.use('/apartment', appartmentRoutes)
+const apartmentRoutes = require("./routes/apartmentRoutes.js")
+app.use('/apartment', apartmentRoutes);
+
+const videoRoutes = require("./routes/videoRoutes.js")
+app.use('/video', videoRoutes);
+
+const videoApartmentRoutes = require("./routes/videoApartmentRoutes.js")
+app.use("/videoapartment", videoApartmentRoutes)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
