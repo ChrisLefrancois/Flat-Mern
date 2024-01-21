@@ -1,19 +1,17 @@
 // FlatCard.js
 import React from 'react';
 import { Link } from 'react-router-dom';
+import "../App.css"
 
 const FlatCard = ({ flat }) => {
   return (
-    <div className="flat-card">
+    <div>
+
+    <div className="hotel" style={{ backgroundImage: `url(${flat.image})`}}>
       <Link to={`/flats/${flat._id}`}>
-        <div
-          className="flat-image"
-          style={{ backgroundImage: `url(${flat.image})`,backgroundRepeat:"no-repeat",backgroundSize:"contain",
-          height:400,width:400 }}
-          >
-          <h2>{flat.flat_name}</h2>
-          </div>
+        <h2>{flat.flat_name}</h2>
       </Link>
+    </div>
     </div>
   );
 };

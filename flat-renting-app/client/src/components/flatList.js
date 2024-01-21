@@ -22,7 +22,7 @@ const FlatList = () => {
 
     return (
       <div>
-          <h2>Flat List</h2>
+          <h2 className='text-center'>Flat List</h2>
           <div className="flats-list">
       {flats.map((flat) => (
         <FlatCard key={flat._id} flat={flat} />
