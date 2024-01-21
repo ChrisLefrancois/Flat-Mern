@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import FlatCard from './flatCard.js';
 
 
 const FlatList = () => {
@@ -22,13 +23,11 @@ const FlatList = () => {
     return (
       <div>
           <h2>Flat List</h2>
-          <ul>
-              {flats.map(flat => (
-                  <li key={flat._id}>
-                      <Link to={`/flats/${flat._id}`}>{flat.flat_name}</Link>
-                  </li>
-              ))}
-          </ul>
+          <div className="flats-list">
+      {flats.map((flat) => (
+        <FlatCard key={flat._id} flat={flat} />
+      ))}
+    </div>
       </div>
   );
 };

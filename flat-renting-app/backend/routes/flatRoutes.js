@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-      const { flat_name, address } = req.body;
+      const { flat_name, image, address } = req.body;
       console.log(req.body)
 
       // Validate input data (you may want to add more validation)
@@ -23,12 +23,22 @@ router.post('/', async (req, res) => {
       }
 
       // Create a new flat
-      const newFlat = new Flat({ flat_name, address });
+      const newFlat = new Flat({ flat_name, image, address });
       const savedFlat = await newFlat.save();
 
       res.status(201).json(savedFlat);
   } catch (err) {
       res.status(500).json({ message: err.message });
+  }
+});
+
+router.delete('/', async (req, res) => {
+  try {
+    await Flat.deleteMany();
+    res.status(200).json({ message: 'All flats deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting flats:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 

@@ -4,9 +4,9 @@ const Flat = require('../models/flatModel');
 const Apartment = require('../models/apartmentModel');
 
 // Route to create a new apartment
-router.post('/create-apartment', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
-        const { apartment_name, flat_id } = req.body;
+        const { apartment_name, images, flat_id } = req.body;
         console.log(req.body)
 
         // Validate input data (you may want to add more validation)
@@ -21,7 +21,7 @@ router.post('/create-apartment', async (req, res) => {
         }
 
         // Create a new apartment
-        const newApartment = new Apartment({ apartment_name, flat_id });
+        const newApartment = new Apartment({ apartment_name, images, flat_id });
         const savedApartment = await newApartment.save();
 
         res.status(201).json(savedApartment);
@@ -49,6 +49,16 @@ router.get('/flats/:flatId', async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
+});
+
+router.delete('/', async (req, res) => {
+  try {
+    await Apartment.deleteMany();
+    res.status(200).json({ message: 'All apartments deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting apartments:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 module.exports = router;
