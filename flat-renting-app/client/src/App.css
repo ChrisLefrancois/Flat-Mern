@@ -6,6 +6,10 @@
   text-align: center;
 }
 
+.m-top {
+  margin-top: 8px;
+}
+
 .hotel {
   width: 70%;
   height: 250px;
