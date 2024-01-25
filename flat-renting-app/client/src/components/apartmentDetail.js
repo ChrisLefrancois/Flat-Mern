@@ -5,6 +5,7 @@ import axios from 'axios';
 const ApartmentDetail = () => {
   const { apartmentId } = useParams();
   const [apartment, setApartment] = useState({ images: [] }); // Initialize images as an empty array
+  const [videos, setVideos] = useState( [] )
 
   useEffect(() => {
     const fetchApartment = async () => {
@@ -17,10 +18,19 @@ const ApartmentDetail = () => {
       }
     };
 
-    fetchApartment();
-  }, [apartmentId]);
+    const fetchApartmentVideos = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/apartments/${apartmentId}/videos`);
+        setVideos(response.data);
+      } catch (error) {
+        console.error('Error fetching apartment videos:', error);
+      }
+    };
 
-  console.log(apartment.images);
+    fetchApartmentVideos();
+    fetchApartment();
+
+  }, [apartmentId]);
 
   return (
     <div className="apartment">
@@ -28,8 +38,15 @@ const ApartmentDetail = () => {
       {apartment.images.map((image, index) => (
         <div className='m-top hotel' key={index} style={{ backgroundImage: `url(${image})`, width: '100%', height: '300px' }}></div>
       ))}
+
+      {videos.map((video, index) => (
+        <div className='m-top hotel' key={index} style={{ backgroundImage: `url(${video})`, width: '100%', height: '300px' }}></div>
+      ))}
+
     </div>
   );
+
+
 };
 
 export default ApartmentDetail;

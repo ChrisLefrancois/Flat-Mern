@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Flat = require('../models/flatModel');
 const Apartment = require('../models/apartmentModel');
+const VideoApartment = require('../models/videoApartmentModel');
 
 // Route to create a new apartment
 router.post('/', async (req, res) => {
@@ -69,6 +70,24 @@ router.delete('/', async (req, res) => {
   } catch (error) {
     console.error('Error deleting apartments:', error.message);
     res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// get all video of an apartment
+
+router.get('/:apartmentId/videos', async (req, res) => {
+  try {
+    const apartmentId = req.params.apartmentId;
+
+    // Find all VideoApartment entries for the given apartment
+    const videoApartments = await VideoApartment.find({ apartment: apartmentId }).populate('video');
+
+    // Extract videos from VideoApartment entries
+    const videos = videoApartments.map(videoApartment => videoApartment.video);
+
+    res.json(videos);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
