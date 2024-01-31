@@ -80,10 +80,10 @@ router.get('/:apartmentId/videos', async (req, res) => {
     const apartmentId = req.params.apartmentId;
 
     // Find all VideoApartment entries for the given apartment
-    const videoApartments = await VideoApartment.find({ apartment: apartmentId }).populate('video');
+    const videoApartments = await VideoApartment.find({ apartment_id: apartmentId }).populate('video_id');
 
     // Extract videos from VideoApartment entries
-    const videos = videoApartments.map(videoApartment => videoApartment.video);
+    const videos = videoApartments.map(videoApartment => videoApartment.video_id);
 
     res.json(videos);
   } catch (error) {

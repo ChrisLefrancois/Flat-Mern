@@ -32,6 +32,8 @@ const ApartmentDetail = () => {
 
   }, [apartmentId]);
 
+  console.log(videos)
+
   return (
     <div className="apartment">
       <h1>{apartment.apartment_name}</h1>
@@ -39,9 +41,17 @@ const ApartmentDetail = () => {
         <div className='m-top hotel' key={index} style={{ backgroundImage: `url(${image})`, width: '100%', height: '300px' }}></div>
       ))}
 
-      {videos.map((video, index) => (
-        <div className='m-top hotel' key={index} style={{ backgroundImage: `url(${video})`, width: '100%', height: '300px' }}></div>
-      ))}
+    {videos.map((video, index) => (
+      <div className='m-top hotel' key={index}>
+        <iframe
+          width="100%"
+          height="300px"
+          src={`https://www.youtube.com/embed/${video.url}`}
+          title={`YouTube Video ${index}`}
+          allowFullScreen
+        ></iframe>
+      </div>
+    ))}
 
     </div>
   );
